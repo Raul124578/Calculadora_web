@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de raíces</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .campo {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #25b4e4;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #006f98;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Calculadora de raíces de polinomios</h1>
+
+
+    <form method="post" action="{% url 'calcular' %}">
+
+        {% csrf_token %}
+        
+        <div class="campo" id="div_id_funcion">
+            <label for="id_funcion">Función (f(x))</label>
+            {{ form.funcion }}
+        </div>
+
+        <div class="campo" id="div_id_metodo">
+            <label for="id_metodo">Método</label>
+            {{ form.metodo }}
+        </div>
+
+        <div class="campo" id="div_id_a">
+            <label for="id_a">Extremo inferior (a)</label>
+            {{ form.a }}
+        </div>
+
+        <div class="campo" id="div_id_b">
+            <label for="id_b">Extremo superior (b)</label>
+            {{ form.b }}
+        </div>
+
+        <div class="campo" id="div_id_x0">
+            <label for="id_x0">Valor inicial (x₀)</label>
+            {{ form.x0 }}
+        </div>
+
+        <div class="campo" id="div_id_tolerancia">
+            <label for="id_tolerancia">Tolerancia (error permitido)</label>
+            {{ form.tolerancia }}
+        </div>
+
+        <div class="campo" id="div_id_max_iter">
+            <label for="id_max_iter">Máximo número de iteraciones</label>
+            {{ form.max_iter }}
+        </div>
+
+        <button type="submit">Calcular</button>
+    </form>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const metodoSelect = document.getElementById("id_metodo");
+        const campoA = document.getElementById("div_id_a");
+        const campoB = document.getElementById("div_id_b");
+        const campoX0 = document.getElementById("div_id_x0");
+
+        function actualizarCampos() {
+            const metodo = metodoSelect.value;
+            if (metodo === "biseccion") {
+                campoA.style.display = "block";
+                campoB.style.display = "block";
+                campoX0.style.display = "none";
+            } else if (metodo === "newton" || metodo === "newton_mod") {
+                campoA.style.display = "none";
+                campoB.style.display = "none";
+                campoX0.style.display = "block";
+            } else {
+                campoA.style.display = "none";
+                campoB.style.display = "none";
+                campoX0.style.display = "none";
+            }
+        }
+
+        metodoSelect.addEventListener("change", actualizarCampos);
+        actualizarCampos();
+    });
+    </script>
+</body>
+</html>
+

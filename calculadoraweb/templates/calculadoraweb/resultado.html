@@ -1,0 +1,29 @@
+<h2>Resultado</h2>
+{% if mensaje %}
+    <p style="color:red;">{{ mensaje }}</p>
+{% endif %}
+{% if raiz %}
+    <p><strong>Raíz aproximada:</strong> {{ raiz }}</p>
+    <img src="/static/{{ grafica }}" alt="Gráfica">
+    <table border="1">
+        <tr>
+            {% for col in encabezados %}
+                <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+
+        {% for fila in tabla %}
+            <tr>
+                {% for valor in fila %}
+                    <td>{{ valor }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    {% if grafica_url %}
+    <h4>Gráfica:</h4>
+    <img src="{{ grafica_url }}" alt="Gráfica del polinomio" class="img-fluid">
+{% endif %}
+
+{% endif %}
+<a href="{% url 'index' %}">← Volver</a>
