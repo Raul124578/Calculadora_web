@@ -14,7 +14,7 @@ Tecnologías Utilizadas
 Instalación y Ejecución Local
 
 Clona el repositorio:
-git clone https://github.com/tu-usuario/calculadora-raices.git
+git clone: https://github.com/Raul124578/Calculadora_web
 2.Crear y activar un entorno virtual
 python -m venv env
 source env/bin/activate    
