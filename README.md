@@ -15,6 +15,7 @@ Instalación y Ejecución Local
 
 Clona el repositorio:
 git clone: https://github.com/Raul124578/calculadora
+
 2.Crear y activar un entorno virtual
 python -m venv env
 source env/bin/activate    
